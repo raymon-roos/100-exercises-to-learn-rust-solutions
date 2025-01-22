@@ -9,6 +9,19 @@
 // `factorial(2)` to return `2`, and so on.
 //
 // Use only what you learned! No loops yet, so you'll have to use recursion!
+fn factorial(n: u32) -> u32 {
+    // Hide the inside function, as it attempts to make room for tail-call optimization by allowing
+    // the "current" stack frame to be replaced by the next stack frame. As all required
+    // information is passed into the next function call, the current frame doesn't have to kept in
+    // memory (if the compiler allows) as such avoiding stack overflow.
+    fn f(n: u32, fact: u32) -> u32 {
+        match n {
+            0 => fact,
+            n => f(n - 1, fact * n),
+        }
+    }
+    f(n, 1)
+}
 
 #[cfg(test)]
 mod tests {
