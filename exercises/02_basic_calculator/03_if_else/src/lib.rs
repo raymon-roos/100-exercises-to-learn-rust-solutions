@@ -2,7 +2,22 @@
 /// `13` if `n` is divisible by `3`,
 /// `17` otherwise.
 fn magic_number(n: u32) -> u32 {
-    todo!()
+    // Rust-ism: `if-else` constructs are expressions, so their result can be
+    // returned.
+    if n % 2 == 0 {
+        12
+    } else if n % 3 == 0 {
+        13
+    } else {
+        17
+    }
+
+    // Or more succinctly with a match expression:
+    // match n {
+    //     n if n % 2 == 0 => 12,
+    //     n if n % 3 == 0 => 13,
+    //     _ => 7,
+    // }
 }
 
 #[cfg(test)]
