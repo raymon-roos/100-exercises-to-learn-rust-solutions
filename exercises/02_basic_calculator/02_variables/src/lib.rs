@@ -8,6 +8,11 @@
 pub fn speed(start: u32, end: u32, time_elapsed: u32) -> u32 {
     // TODO: define a variable named `distance` with the right value to get tests to pass
     //  Do you need to annotate the type of `distance`? Why or why not?
+    let distance = end - start;
+    // Answer: No type annotation needed. Rust nows the return type, so it knows the type of the
+    // below expression, so it knowns what type this variable has to be. It also knows the types
+    // that went into the above variable's value and if those didn't match how it's used, that
+    // would be a type error.
 
     // Don't change the line below
     distance / time_elapsed
