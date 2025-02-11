@@ -13,6 +13,30 @@
 // You don't have to though: it's perfectly okay to write three separate
 // implementations manually. Venture further only if you're curious.
 
+use std::ops::Mul;
+
+trait Power<T> {
+    fn power(&mut self, exponent: T) -> Self;
+}
+
+impl Power<u16> for u32 {
+    fn power(&mut self, exponent: u16) -> Self {
+        (2_u16..=exponent).fold(*self, |acc, _| acc.mul(*self))
+    }
+}
+
+impl Power<u32> for u32 {
+    fn power(&mut self, exponent: u32) -> Self {
+        (2..=exponent).fold(*self, |acc, _| acc.mul(*self))
+    }
+}
+
+impl Power<&u32> for u32 {
+    fn power(&mut self, exponent: &u32) -> Self {
+        (2..=*exponent).fold(*self, |acc, _| acc.mul(*self))
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::Power;
