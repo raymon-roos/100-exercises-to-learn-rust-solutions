@@ -3,6 +3,24 @@
 //
 // Then implement the trait for `u32` and `i32`.
 
+use std::ops::{Div, Rem};
+
+trait IsEven {
+    fn is_even(&self) -> bool;
+}
+
+impl IsEven for u32 {
+    fn is_even(&self) -> bool {
+        self % 2_u32 == 0
+    }
+}
+
+impl IsEven for i32 {
+    fn is_even(&self) -> bool {
+        self % 2_i32 == 0
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
