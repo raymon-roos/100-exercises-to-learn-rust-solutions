@@ -1,6 +1,8 @@
 // TODO: Convert the `Ticket::new` method to return a `Result` instead of panicking.
 //   Use `String` as the error type.
 
+use std::error::Error;
+
 #[derive(Debug, PartialEq)]
 struct Ticket {
     title: String,
@@ -16,25 +18,25 @@ enum Status {
 }
 
 impl Ticket {
-    pub fn new(title: String, description: String, status: Status) -> Ticket {
+    pub fn new(title: String, description: String, status: Status) -> Result<Ticket, String> {
         if title.is_empty() {
-            panic!("Title cannot be empty");
+            return Err("Title cannot be empty".to_owned());
         }
         if title.len() > 50 {
-            panic!("Title cannot be longer than 50 bytes");
+            return Err("Title cannot be longer than 50 bytes".to_owned());
         }
         if description.is_empty() {
-            panic!("Description cannot be empty");
+            return Err("Description cannot be empty".to_owned());
         }
         if description.len() > 500 {
-            panic!("Description cannot be longer than 500 bytes");
+            return Err("Description cannot be longer than 500 bytes".to_owned());
         }
 
-        Ticket {
+        Ok(Ticket {
             title,
             description,
             status,
-        }
+        })
     }
 }
 
